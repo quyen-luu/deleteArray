@@ -1,29 +1,64 @@
 ﻿public class Program
 {
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        int[] arrays = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        Console.Write("Nhap phan tu can xoa: ");
-        int x = Convert.ToInt32(Console.ReadLine());
-        Funtionexample(x, arrays);
-    }
-    public static void Funtionexample(int x, int[] arrays)
-    {
+        Console.Write("Enter the number of elements in the array: ");
+        int numberElement = Convert.ToInt32(Console.ReadLine());
+        int[] arrays = new int[numberElement];
+        Console.WriteLine();
+        Console.WriteLine("Enter the element.");
+
+        //Enter the element
+        for (int i = 0; i < arrays.Length; i++)
+        {
+            Console.Write($"Element {i + 1}: ");
+            arrays[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        //Display the array on the screen
+        Console.WriteLine();
+        Console.Write("Arrays: ");
+        foreach (int element in arrays)
+        {
+            Console.Write(element + ", ");
+        }
+
+        //Delete Element
+        Console.WriteLine();
+        Console.Write("Enter the element you want to delete: ");
+        int numberDelete = Convert.ToInt32(Console.ReadLine());
+
         int index = 0;
         for (int i = 0; i < arrays.Length; i++)
         {
-            if (arrays[i] == x)
+            if (arrays[i] == numberDelete)
             {
+                Console.WriteLine($"The element to be deleted is at position {i + 1}.");
                 index = i;
+                break;
+            }
+            else
+            {
+                continue;
             }
         }
-        for (int j = index; j < arrays.Length - 1; j++)
+
+        //New Arrays
+        int[] newArrays = new int[numberElement - 1];
+        for (int i = 0; i < index; i++)
         {
-            arrays[j] = arrays[j + 1];
+            newArrays[i] = arrays[i];
         }
-        for (int i = 0; i < arrays.Length - 1; i++)
+        for (int j = index; j < newArrays.Length; j++)
         {
-            Console.Write(arrays[i] + "; ");
+            newArrays[j] = arrays[j + 1];
+        }
+
+        Console.WriteLine();
+        Console.Write("New arrays after deletion: ");
+        foreach (int element in newArrays)
+        {
+            Console.Write(element + ", ");
         }
     }
 }
